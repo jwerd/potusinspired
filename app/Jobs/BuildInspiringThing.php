@@ -7,9 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-use Thujohn\Twitter\Facades\Twitter;
+use App\Services\ImageBuilder;
 
 class BuildInspiringThing implements ShouldQueue
 {
@@ -52,31 +50,9 @@ class BuildInspiringThing implements ShouldQueue
      */
     public function handle()
     {
-        $rand = rand(1,4);
-        $img = Image::make(public_path('backdrops/'.$rand.'.jpg'));
+        $filename = (new ImageBuilder)->builder($this->message);
 
-        $quoteBox = Image::canvas($img->getWidth(), 100, 'rgba(0, 0, 0, 0.5)');
-
-        $lines = explode("\n", wordwrap($this->message, 50));
-        // Sign it by Trump.
-        //$lines[count($lines)-1] .= ' @realDonaldTrump';
-
-        $position = 35;
-        foreach($lines as $key => $part) {
-            $font_choice = ($key === 0) ? 'MoonTypeFace/Moon Bold.otf' : 'MoonTypeFace/Moon Light.otf';
-            $quoteBox->text($part, 10, $position, function($font) use ($font_choice) {
-                $font->file(public_path('fonts/'.$font_choice));
-                $font->size(30);
-                $font->color('#fff');
-            });
-            $position += 30;
-        }
-
-        $img->insert($quoteBox, 'bottom');
-
-        $filename = md5(time()).'.jpg';
-
-        $img->save(public_path('final/'.$filename));
+        dd($filename);
 
         dispatch(new Tweet($filename, $this->tweet));
     }
