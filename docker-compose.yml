@@ -1,0 +1,25 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+#   image: digi/app
+    ports:
+     - "80:80"
+    volumes:
+     - .:/var/www/html
+    networks:
+     - digi
+  redis:
+    image: redis:alpine
+    volumes:
+     - digiredis:/data
+    networks:
+     - digi
+networks:
+  digi:
+    driver: "bridge"
+volumes:
+  digiredis:
+    driver: "local"
