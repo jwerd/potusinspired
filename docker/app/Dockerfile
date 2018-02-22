@@ -24,9 +24,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C \
     && apt-get update \
     && apt-get install -y curl zip unzip git supervisor sqlite3 \
-    && apt-get install -y nginx php7.1-fpm php7.1-cli php7.1-mcrypt php7.1-gd php7.1-mysql \
-       php7.1-pgsql php7.1-imap php-memcached php7.1-mbstring php7.1-xml php7.1-curl \
-       php7.1-imagick php7.1-zip php7.1-bcmath php7.1-sqlite3 php7.1-xdebug \
+    && apt-get install -y nginx php7.0-fpm php7.0-cli php7.0-mcrypt php7.0-gd php7.0-mysql \
+       php7.0-pgsql php7.0-imap php-memcached php7.0-mbstring php7.0-xml php7.0-curl \
+       php7.0-imagick php7.0-zip php7.0-bcmath php7.0-sqlite3 php7.0-xdebug \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && mkdir /run/php \
 #    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
