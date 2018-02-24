@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\BuildInspiringThing;
 use Illuminate\Console\Command;
 use Spatie\TwitterStreamingApi\PublicStream;
+use Illuminate\Support\Facades\Log;
 
 class Trumper extends Command
 {
@@ -56,7 +57,7 @@ class Trumper extends Command
         )->whenTweets($target, function(array $tweet) use ($target) {
             if(!empty($tweet['text']) && !key_exists('retweeted_status', $tweet)) {
                 if($tweet['user']['id'] === $target) { // Only when Trump tweets, make sure Author is TRUMP
-                    \Log::info('Tweet', json_encode($tweet));
+                    Log::info('Tweet', json_encode($tweet));
                     dispatch(new BuildInspiringThing($tweet));
                 }
             }
