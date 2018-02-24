@@ -16,10 +16,10 @@ class ImageBuilder
         $lines = explode("\n", wordwrap($message, 50));
         // Sign it by Trump.
         //$lines[count($lines)-1] .= ' @realDonaldTrump';
-
+ 
         $position = 35;
         foreach($lines as $key => $part) {
-            $font_choice = ($key === 0) ? 'MoonTypeFace/Moon-Bold.otf' : 'MoonTypeFace/Moon-Light.otf';
+            $font_choice = ($key === 0) ? 'MoonTypeface/Moon-Bold.otf' : 'MoonTypeface/Moon-Light.otf';
             $quoteBox->text($part, 10, $position, function($font) use ($font_choice) {
                 $font->file(public_path('fonts/'.$font_choice));
                 $font->size(30);
