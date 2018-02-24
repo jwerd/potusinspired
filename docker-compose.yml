@@ -5,8 +5,6 @@ services:
       context: ./docker/app
       dockerfile: Dockerfile
 #   image: digi/app
-    ports:
-     - "80:80"
     volumes:
      - .:/var/www/html
     networks:

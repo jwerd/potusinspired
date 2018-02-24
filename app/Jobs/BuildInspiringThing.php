@@ -50,9 +50,7 @@ class BuildInspiringThing implements ShouldQueue
      */
     public function handle()
     {
-        $filename = (new ImageBuilder)->builder($this->message);
-
-        dd($filename);
+        $filename = (new ImageBuilder)->build($this->message);
 
         dispatch(new Tweet($filename, $this->tweet));
     }

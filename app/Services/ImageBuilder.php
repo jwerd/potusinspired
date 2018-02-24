@@ -13,7 +13,7 @@ class ImageBuilder
 
         $quoteBox = Image::canvas($img->getWidth(), 100, 'rgba(0, 0, 0, 0.5)');
 
-        $lines = explode("\n", wordwrap($this->message, 50));
+        $lines = explode("\n", wordwrap($message, 50));
         // Sign it by Trump.
         //$lines[count($lines)-1] .= ' @realDonaldTrump';
 
