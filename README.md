@@ -9,7 +9,7 @@ what that twitter user writes in real-time over a backdrop image located in *pub
 Why not?  It's a refresher on the twitter api and it's capabilities.  And it's actually a pretty neat little project.
 
 ## Tech Used
-- PHP 7.1.3*
+- PHP 7.1.14*
 - Laravel 5.6
 - spatie/twitter-streaming-api (real-time feed reader)
 - thujohn/twitter (tweeting/auth, etc)
